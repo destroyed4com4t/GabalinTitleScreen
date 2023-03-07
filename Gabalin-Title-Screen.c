@@ -22,6 +22,9 @@ extern char demo_sounds[];
 
 int i;       //for loops
 char oam_id; //for sprites
+bool start_pressed = false; // Only allows one input from Start Button at a time.
+int sfx_timer; //pauses music to play sound
+
 
 const char ATTRIBUTE_TABLE_1[0x40] = {
   0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // rows 0-3
@@ -166,7 +169,28 @@ void main(void)
     	}
     if (pad & PAD_START) 
     	{
-      	sfx_play(0,0); // Start Button Noise
+        if (!start_pressed)
+    	    {
+      	    sfx_timer=3500;
+            music_pause(1);
+            sfx_play(0,0); // Start Button Noise
+    	    start_pressed = true;
+            }
     	}
+    else
+  	{
+    	music_pause(0);
+        start_pressed = false;
+  	}
+   if (sfx_timer)
+        {
+        music_pause(1);
+        sfx_timer--;
+        }
+   else
+        {
+        music_pause(0);
+        }  
+
   }
 }
