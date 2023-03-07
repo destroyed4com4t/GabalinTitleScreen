@@ -148,17 +148,25 @@ void main(void)
     // poll controller 0
     char pad = pad_poll(0);
     // play sounds when buttons pushed
-    if (pad & PAD_A) {
-      sfx_play(0,0);
-    }
-    if (pad & PAD_B) {
-      sfx_play(1,1);
-    }
-    if (pad & PAD_LEFT) {
-      sfx_play(2,2);
-    }
-    if (pad & PAD_RIGHT) {
-      sfx_play(3,3);
-    }
+    if (pad & PAD_A) 
+    	{
+      	// sfx_play(0,0); // commenting out sfx for now
+    	}
+    if (pad & PAD_B) 
+    	{
+      	// sfx_play(1,1); // commenting out sfx for now
+    	}
+    if (pad & PAD_LEFT) 
+    	{
+      	//sfx_play(2,2); // commenting out sfx for now
+    	}
+    if (pad & PAD_RIGHT) 
+    	{
+      	//sfx_play(3,3); // commenting out sfx for now
+    	}
+    if (pad & PAD_START) 
+    	{
+      	sfx_play(0,0); // Start Button Noise
+    	}
   }
 }
