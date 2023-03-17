@@ -13,10 +13,8 @@ Press controller buttons to hear sound effects.
 
 //#link "famitone2.s"
 void __fastcall__ famitone_update(void);
-//#link "music_aftertherain.s"
-extern char after_the_rain_music_data[];
 //#link "music_dangerstreets.s"
-extern char danger_streets_music_data[];
+extern char gabalin_music_data[];
 //#link "demosounds.s"
 extern char demo_sounds[];
 
@@ -138,7 +136,7 @@ void main(void)
   vram_adr(NTADR_A(2,2));
     // initialize music system
   //famitone_init(after_the_rain_music_data);
-  famitone_init(danger_streets_music_data);
+  famitone_init(gabalin_music_data);
   sfx_init(demo_sounds);
   // set music callback function for NMI
   nmi_set_callback(famitone_update);
