@@ -13,7 +13,7 @@ Press Start to hear Gabalin Game Start Sound.
 
 //#link "famitone2.s"
 void __fastcall__ famitone_update(void);
-//#link "music_dangerstreets.s"
+//#link "music_gabalin_title_screen.s"
 extern char gabalin_music_data[];
 //#link "demosounds.s"
 extern char demo_sounds[];
