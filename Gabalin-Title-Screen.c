@@ -179,8 +179,7 @@ void main(void)
     	}
     else
   	{
-    	music_pause(0);
-        start_pressed = false;
+    	start_pressed = false;
   	}
    if (sfx_timer)
         {
