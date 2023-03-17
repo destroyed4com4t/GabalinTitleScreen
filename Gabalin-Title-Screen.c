@@ -1,7 +1,7 @@
 
 /*
-Demonstrates the Famitone2 library for sound and music.
-Press controller buttons to hear sound effects.
+Displays a rendition of the Gabalin Title Screen and plays the theme.
+Press Start to hear Gabalin Game Start Sound.
 */
 
 #include "neslib.h"
@@ -33,7 +33,7 @@ const char ATTRIBUTE_TABLE_1[0x40] = {
   0x50, 0x50, 0x50, 0x50, 0x50, 0x50, 0x50, 0x50, // rows 20-23
   0x05, 0x05, 0x05, 0x05, 0x05, 0x05, 0x05, 0x05, // rows 24-27
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00  // rows 28-29
-                                     };//Pallette Attributes
+                                     };//Title Screen Pallette Attributes
 
 const char PALETTE[32] = {
     0x0f, // screen color
@@ -109,7 +109,7 @@ const char TITLE_SCREEN[960] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
-                                     };//Pallette Attributes
+                                     }; //Title Screen Tiles
 
 
 void draw_background()
@@ -119,7 +119,7 @@ void draw_background()
   vram_adr(0x23c0);
   vram_write(ATTRIBUTE_TABLE_1, sizeof(ATTRIBUTE_TABLE_1));
   for (i = 0; i < sizeof(TITLE_SCREEN); i++)
-    { //Draw_Cityscape
+    { //Draw_Title Screen
     vram_put(TITLE_SCREEN[i]);
     }
   oam_id=oam_spr(136, 191, 235, 1,oam_id);
@@ -135,7 +135,7 @@ void main(void)
   draw_background();
   vram_adr(NTADR_A(2,2));
     // initialize music system
-  //famitone_init(after_the_rain_music_data);
+  //famitone_init(gabalin_music_data);
   famitone_init(gabalin_music_data);
   sfx_init(demo_sounds);
   // set music callback function for NMI
@@ -151,27 +151,27 @@ void main(void)
     // play sounds when buttons pushed
     if (pad & PAD_A) 
     	{
-      	// sfx_play(0,0); // commenting out sfx for now
+      	// sfx_play(0,0); // commenting out other sfx for now
     	}
     if (pad & PAD_B) 
     	{
-      	// sfx_play(1,1); // commenting out sfx for now
+      	// sfx_play(1,1); // commenting out other sfx for now
     	}
     if (pad & PAD_LEFT) 
     	{
-      	//sfx_play(2,2); // commenting out sfx for now
+      	//sfx_play(2,2); // commenting out other sfx for now
     	}
     if (pad & PAD_RIGHT) 
     	{
-      	//sfx_play(3,3); // commenting out sfx for now
+      	//sfx_play(3,3); // commenting out other sfx for now
     	}
     if (pad & PAD_START) 
     	{
         if (!start_pressed)
     	    {
-      	    sfx_timer=3500;
-            music_pause(1);
-            sfx_play(0,0); // Start Button Noise
+      	    sfx_timer=3500; // Timer To Pause Music
+            music_pause(1); //Pauses Music For Gabalin Start Noise
+            sfx_play(0,0);  // Gabalin Start Button Noise
     	    start_pressed = true;
             }
     	}
@@ -181,12 +181,12 @@ void main(void)
   	}
    if (sfx_timer)
         {
-        music_pause(1);
+        music_pause(1); //Pauses Music For Gabalin Start Noise
         sfx_timer--;
         }
    else
         {
-        music_pause(0);
+        music_pause(0); //Unpauses Music When Timer Runs Out
         }  
 
   }
